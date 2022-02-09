@@ -9,9 +9,37 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+imageName: azure-pipelines-canary-k8s
+dockerRegistryServiceConnection: canary-k8s-docker-registry
+imageRepository: 'azure-pipelines-canary-k8s'
+containerRegistry: dongkuncontainer.azurecr.io
+tag: '$(Build.BuildId)'
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- stage: Build
+  displayName: Build stage
+  jobs:
+    - job: Build
+      displayName: Build
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+        - task: Docker@2
+          displayName: Build and push image
+          inputs:
+            containerRegistry: $(dockerRegistryServiceConnection)
+            repository: $(imageName)
+            command: buildAndPush
+            Dockerfile: app/Dockerfile
+            tags: |
+              $(tag)
+
+        - upload: manifests
+          artifact: manifests
+
+        - upload: misc
+          artifact: misc
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
