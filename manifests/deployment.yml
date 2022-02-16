@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleapp
+  name: httprequest
   labels:
-    app: sampleapp
+    app: httprequest
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
-      app: sampleapp
+      app: httprequest
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
       labels:
-        app: sampleapp
+        app: httprequest
     spec:
       containers:
-      - name: sampleapp
+      - name: httprequest
         #replace <foobar> with your container registry. Example: contosodemo.azurecr.io
         image: sharedglobalservices.azurecr.io/dongkun-canary-test
         imagePullPolicy: Always
