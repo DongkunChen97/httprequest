@@ -22,5 +22,5 @@ spec:
         image: sharedglobalservices.azurecr.io/dongkun-canary-test
         imagePullPolicy: Always
         ports:
-        - containerPort: 8000
-        - containerPort: 8080
+        - containerPort: 8001
+        - containerPort: 8081

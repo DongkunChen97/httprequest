@@ -9,11 +9,11 @@ spec:
     app: httprequest
   ports:
   - name: metrics
-    port: 8000
+    port: 8001
     protocol: TCP
-    targetPort: 8000
+    targetPort: 8001
   - name: http
-    port: 8080
+    port: 8081
     protocol: TCP
-    targetPort: 8080
+    targetPort: 8081
   type: ClusterIP
