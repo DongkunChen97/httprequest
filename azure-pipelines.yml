@@ -69,9 +69,3 @@ stages:
                     $(Pipeline.Workspace)/manifests/service.yml
                   containers: '$(containerRegistry)/$(imageRepository):$(tag)'
                   imagePullSecrets: azure-pipelines-canary-k8s
-
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
